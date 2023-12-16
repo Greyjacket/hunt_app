@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    background-color: #0c3fe6;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    margin: 0 auto; /* This centers the container horizontally */
+    width: 50%; /* Adjust this value to suit your needs */
+    display: flex; /* This makes the container a flex container */
+    flex-direction: column; /* This stacks the children vertically */
+    align-items: center; /* This centers the children horizontally */
+  }
+
+table {
+  width: 100%;
+  background-color: wheat;
+
+  }
+  
+  /* Optional: Add some styling to the table */
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  table td input {
+    appearance: none;
+    border: none;
+    background: transparent;
+    padding: 5px;
+  }
+.dateField {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    text-align: left;
+}
+
+.dropdownLabel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    display: block;
+    text-align: left;
+
+  }

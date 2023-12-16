@@ -10,6 +10,7 @@
 
 # production
 /build
+/public
 
 # misc
 .DS_Store
@@ -21,3 +22,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+backend/*       # Ignore everything in dir
+!/backend/app # Don't ignore subdir
+**/__pycache__/
+
+*.db
+*.def
+*.dll
+*.sh
+ package-lock.json

@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { ChakraProvider, Flex } from '@chakra-ui/react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Notes from './components/Notes';
+import LeadTable from './components/LeadTable';
+import NavigationPane from './components/NavigationPane';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ChakraProvider>
+      <Router>
+        <Flex direction={{ base: "column", md: "row" }}>
+          <NavigationPane />
+          <Routes>
+            <Route path="/new-lead" element={<LeadTable className="table"/>} />
+            <Route path="/current-leads" element={<><LeadTable className="table"/><Notes /></>} />  
+            {/* Add more routes as needed */}
+          </Routes>
+        </Flex>
+      </Router>
+    </ChakraProvider>
   );
 }
 

@@ -1,0 +1,23 @@
+.note-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.note-container:hover .note-buttons {
+    visibility: visible;
+}
+
+.note-buttons {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+}
+
+.addendum-buttons {
+    visibility: hidden;
+}
+
+.note-container:hover .addendum-buttons {
+    visibility: visible;
+}
