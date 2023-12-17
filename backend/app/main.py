@@ -129,3 +129,35 @@ def delete_lead(lead_id: int, db: Session = Depends(get_db)):
     db.delete(db_lead)
     db.commit()
     return {"message": "Lead deleted successfully"}
+
+@app.post("/notes/", response_model=schemas.Note)
+def create_note(note: schemas.NoteCreate, lead_id: int, db: Session = Depends(get_db)):
+    return crud.create_note(db=db, note=note, lead_id=lead_id)
+
+@app.get("/notes/", response_model=List[schemas.Note])
+def read_notes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    notes = crud.get_notes(db, skip=skip, limit=limit)
+    return notes
+
+@app.get("/notes/{note_id}", response_model=schemas.Note)
+def read_note(note_id: int, db: Session = Depends(get_db)):
+    db_note = crud.get_note(db, note_id=note_id)
+    if db_note is None:
+        raise HTTPException(status_code=404, detail="Note not found")
+    return db_note
+
+@app.post("/addendums/", response_model=schemas.Addendum)
+def create_addendum(addendum: schemas.AddendumCreate, note_id: int, db: Session = Depends(get_db)):
+    return crud.create_addendum(db=db, addendum=addendum, note_id=note_id)
+
+@app.get("/addendums/", response_model=List[schemas.Addendum])
+def read_addendums(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    addendums = crud.get_addendums(db, skip=skip, limit=limit)
+    return addendums
+
+@app.get("/addendums/{addendum_id}", response_model=schemas.Addendum)
+def read_addendum(addendum_id: int, db: Session = Depends(get_db)):
+    db_addendum = crud.get_addendum(db, addendum_id=addendum_id)
+    if db_addendum is None:
+        raise HTTPException(status_code=404, detail="Addendum not found")
+    return db_addendum

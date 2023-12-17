@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import DateTime, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 from database import Base
 
@@ -30,3 +30,27 @@ class Lead(Base):
     # Relationships
     seller = relationship("Participant", foreign_keys=[seller_id])
     buyer = relationship("Participant", foreign_keys=[buyer_id])
+    notes = relationship("Note", back_populates="lead")
+    addendums = relationship("Addendum", back_populates="note")
+
+class Note(Base):
+    __tablename__ = "notes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    content = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    lead_id = Column(Integer, ForeignKey("leads.id"))
+    # Relationships
+    lead = relationship("Lead", back_populates="notes")
+    addendums = relationship("Addendum", back_populates="note")
+
+class Addendum(Base):
+    __tablename__ = "addendums"
+
+    id = Column(Integer, primary_key=True, index=True)
+    content = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    note_id = Column(Integer, ForeignKey("notes.id"))
+
+    # Relationships
+    note = relationship("Note", back_populates="addendums")

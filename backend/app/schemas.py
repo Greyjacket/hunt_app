@@ -35,3 +35,30 @@ class Participant(ParticipantBase):
 
     class Config:
         orm_mode = True
+
+class AddendumBase(BaseModel):
+    content: str
+
+class AddendumCreate(AddendumBase):
+    pass
+
+class Addendum(AddendumBase):
+    id: int
+    note_id: int
+
+    class Config:
+        orm_mode = True
+
+class NoteBase(BaseModel):
+    content: str
+
+class NoteCreate(NoteBase):
+    pass
+
+class Note(NoteBase):
+    id: int
+    lead_id: int
+    addendums: list[Addendum] = []
+
+    class Config:
+        orm_mode = True

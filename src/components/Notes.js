@@ -144,7 +144,7 @@ function Notes() {
                                                 onChange={(event) => setTempAddendum({ ...tempAddendum, text: event.target.value })}
                                             />
                                         ) : (
-                                            <Text ml={5} fontSize="sm">- {addendum.text}</Text>
+                                            <Text ml={15} fontSize="sm">- {addendum.text}</Text>
                                         )}
                                         {editKey === e.key && (
                                             <>
@@ -230,7 +230,7 @@ function Notes() {
                 onClick={handleNoteCreate} 
                 mt={4}
             >
-                {editKey !== null ? 'Update Note' : 'Add Note'}
+                {'Add Note'}
             </Button>
         </Box>
     </Box>
