@@ -1,5 +1,6 @@
 from sqlalchemy import DateTime, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 from database import Base
 
 
@@ -22,6 +23,7 @@ class Lead(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     interest = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     # Foreign keys
     seller_id = Column(Integer, ForeignKey("participants.id"))
@@ -31,7 +33,6 @@ class Lead(Base):
     seller = relationship("Participant", foreign_keys=[seller_id])
     buyer = relationship("Participant", foreign_keys=[buyer_id])
     notes = relationship("Note", back_populates="lead")
-    addendums = relationship("Addendum", back_populates="note")
 
 class Note(Base):
     __tablename__ = "notes"
@@ -39,10 +40,13 @@ class Note(Base):
     id = Column(Integer, primary_key=True, index=True)
     content = Column(String)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+    
+    # Foreign keys
     lead_id = Column(Integer, ForeignKey("leads.id"))
+    
     # Relationships
     lead = relationship("Lead", back_populates="notes")
-    addendums = relationship("Addendum", back_populates="note")
+    addenda = relationship("Addendum", back_populates="note")
 
 class Addendum(Base):
     __tablename__ = "addendums"
@@ -53,4 +57,4 @@ class Addendum(Base):
     note_id = Column(Integer, ForeignKey("notes.id"))
 
     # Relationships
-    note = relationship("Note", back_populates="addendums")
+    note = relationship("Note", back_populates="addenda")

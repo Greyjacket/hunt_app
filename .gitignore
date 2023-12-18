@@ -32,3 +32,4 @@ backend/*       # Ignore everything in dir
 *.dll
 *.sh
  package-lock.json
+ .env

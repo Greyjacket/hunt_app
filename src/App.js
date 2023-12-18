@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Notes from './components/Notes';
 import LeadTable from './components/LeadTable';
 import NavigationPane from './components/NavigationPane';
+import LeadTableDisplay from './components/LeadTableDisplay';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <NavigationPane />
           <Routes>
             <Route path="/new-lead" element={<LeadTable className="table"/>} />
-            <Route path="/current-leads" element={<><LeadTable className="table"/><Notes /></>} />  
+            <Route path="/current-leads" element={<><LeadTableDisplay className="table"/><Notes /></>} />  
             {/* Add more routes as needed */}
           </Routes>
         </Flex>
