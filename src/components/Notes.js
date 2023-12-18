@@ -22,7 +22,6 @@ function Notes() {
             return;
         }
         const data = await response.json();
-        console.log(data)
         setNotes(data);
     }
 
