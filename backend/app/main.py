@@ -120,7 +120,7 @@ async def read_lead(lead_id: int, db: Session = Depends(get_db)):
     return db_lead
 
 @app.put("/leads/{lead_id}", response_model=schemas.Lead)
-async def update_lead(lead_id: int, lead: schemas.LeadCreate, db: Session = Depends(get_db)):
+async def update_lead(lead_id: int, lead: schemas.LeadUpdate, db: Session = Depends(get_db)):
     return crud.update_lead(db=db, lead_id=lead_id, lead=lead)
 
 @app.get("/leads/{lead_id}/notes", response_model=List[schemas.Note])

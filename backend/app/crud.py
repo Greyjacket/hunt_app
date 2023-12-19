@@ -1,4 +1,6 @@
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
+from fastapi import HTTPException
 import models, schemas
 
 
@@ -14,7 +16,11 @@ def get_participant_by_name(db: Session, name: str):
 def create_participant(db: Session, participant: schemas.ParticipantCreate):
     db_participant = models.Participant(**participant.dict())
     db.add(db_participant)
-    db.commit()
+    try:
+        db.commit()
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(status_code=400, detail="Email already in use.")
     db.refresh(db_participant)
     return db_participant
 
@@ -44,7 +50,7 @@ def create_lead(db: Session, lead: schemas.LeadCreate):
     db.refresh(db_lead)
     return db_lead
 
-def update_lead(db: Session, lead_id: int, lead: schemas.LeadCreate):
+def update_lead(db: Session, lead_id: int, lead: schemas.LeadUpdate):
     db_lead = db.query(models.Lead).filter(models.Lead.id == lead_id).first()
     for key, value in lead.dict().items():
         setattr(db_lead, key, value)

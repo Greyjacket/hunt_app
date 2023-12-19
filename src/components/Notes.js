@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Heading, Button, Input, VStack, HStack, Text, Textarea } from '@chakra-ui/react';
+import { useParams } from 'react-router-dom';
 import './Notes.css';
 
 
@@ -13,10 +14,11 @@ function Notes() {
     const [showAddAddendumButton, setShowAddAddendumButton] = useState(true);
     const [tempNote, setTempNote] = useState({ id: null, lead_id: null, content: "", addenda: [] });    
     const [tempAddendum, setTempAddendum] = useState(null);
+    const { id } = useParams();
 
     async function syncNotes() {
         const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-        const response = await fetch(`${API_BASE_URL}leads/1/notes`);
+        const response = await fetch(`${API_BASE_URL}leads/${id}/notes`);
         if (!response.ok) {
             console.error(`Failed to fetch notes: ${response.status}`);
             return;
@@ -35,7 +37,7 @@ function Notes() {
             alert('Note text cannot be empty!');
             return;
         }
-        const note = {lead_id: 1, content: content, addenda: [] };
+        const note = {lead_id: id, content: content, addenda: [] };
 
         // Send a POST request
         await fetch(`${API_BASE_URL}notes`, {

@@ -15,8 +15,8 @@ class Participant(Base):
     address = Column(String)
 
     # Relationships
-    selling_leads = relationship("Lead", foreign_keys="Lead.seller_id", back_populates="seller")
-    buying_leads = relationship("Lead", foreign_keys="Lead.buyer_id", back_populates="buyer")
+    selling_leads = relationship("Lead", foreign_keys="Lead.seller_id", back_populates="seller", cascade="all, delete")
+    buying_leads = relationship("Lead", foreign_keys="Lead.buyer_id", back_populates="buyer", cascade="all, delete")
 
 class Lead(Base):
     __tablename__ = "leads"

@@ -7,6 +7,8 @@ class LeadBase(BaseModel):
     seller_id: int
     interest: str
 
+class LeadUpdate(BaseModel):
+    interest: str
 
 class LeadCreate(LeadBase):
     pass

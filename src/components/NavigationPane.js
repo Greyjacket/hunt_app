@@ -7,8 +7,6 @@ function NavigationPane() {
             <VStack align="start" spacing={4}>
                 <Link to="/new-lead">New Lead</Link>
                 <Link to="/current-leads">Current Leads</Link>
-                <Link to="/link-3">Link 3</Link>
-                <Link to="/link-4">Link 4</Link>
             </VStack>
         </Box>
     );

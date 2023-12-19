@@ -4,6 +4,7 @@ import Notes from './components/Notes';
 import LeadTable from './components/LeadTable';
 import NavigationPane from './components/NavigationPane';
 import LeadTableDisplay from './components/LeadTableDisplay';
+import LeadList from './components/LeadList';
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
           <NavigationPane />
           <Routes>
             <Route path="/new-lead" element={<LeadTable className="table"/>} />
-            <Route path="/current-leads" element={<><LeadTableDisplay className="table"/><Notes /></>} />  
+            <Route path="/leads/:id" element={<><LeadTableDisplay/><Notes/></>}/>
+            <Route path="/current-leads" element={<LeadList/>} />  
             {/* Add more routes as needed */}
           </Routes>
         </Flex>
