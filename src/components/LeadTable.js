@@ -54,7 +54,9 @@ function LeadTable() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const url = 'http://127.0.0.1:8000/leads';
+        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+        const url = `${API_BASE_URL}leads/`;
         fetch(url, {
             method: 'POST',
             headers: {
