@@ -33,5 +33,5 @@ yarn-error.log*
 *.def
 *.dll
 *.sh
- package-lock.json
- .env
+package-lock.json
+.env
