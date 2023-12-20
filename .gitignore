@@ -35,3 +35,12 @@ yarn-error.log*
 *.sh
 package-lock.json
 .env
+backend/hunt_backend/Scripts/python.exe
+backend/hunt_backend/Scripts/uvicorn.exe
+backend/hunt_backend/Lib/site-packages/greenlet/_greenlet.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/pydantic_core/_pydantic_core.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/sqlalchemy/cyextension/collections.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/sqlalchemy/cyextension/immutabledict.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/sqlalchemy/cyextension/processors.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/sqlalchemy/cyextension/resultproxy.cp312-win_amd64.pyd
+backend/hunt_backend/Lib/site-packages/sqlalchemy/cyextension/util.cp312-win_amd64.pyd
