@@ -47,19 +47,16 @@ function LeadsList() {
         navigate(`/leads/${id}`);
     };
 
-    const handleButtonClick = () => {
-        console.log(tableData);
-    };
     return (
         <div>
-<Box maxW="15%" _hover={{ backgroundColor: "blue.100" }}>
-    <Link to="/new-lead">
-        <Flex align="center">
-            <Icon as={AiOutlinePlusCircle} boxSize={10} color="blue.500" />
-            <Text fontSize="xl" fontWeight="bold" ml={2}>Create new lead</Text>
-        </Flex>
-    </Link>
-</Box>
+            <Box maxW="15%" _hover={{ backgroundColor: "blue.100" }}>
+                <Link to="/new-lead">
+                    <Flex align="center">
+                        <Icon as={AiOutlinePlusCircle} boxSize={10} color="blue.500" />
+                        <Text fontSize="xl" fontWeight="bold" ml={2}>Create new lead</Text>
+                    </Flex>
+                </Link>
+            </Box>
             <Table variant="simple">
                 <Thead>
                     <Tr>
@@ -70,20 +67,20 @@ function LeadsList() {
                 </Thead>
                 <Tbody>
                     {tableData.map((row, index) => (
-                        <Box as="tr" key={index} onClick={() => handleRowClick(row.id)} _hover={{ boxShadow: "0 0 10px #719ECE" }}>
-                            <Td>{row.id}</Td>
-                            <Td>{row.interest}</Td>
-                            <Td>{row.date}</Td>
-                            <Td>{row.buyer_name}</Td>
-                            <Td>{row.buyer_email}</Td>
-                            <Td>{row.buyer_phone1}</Td>
-                            <Td>{row.buyer_phone2}</Td>
-                            <Td>{row.buyer_address}</Td>
-                            <Td>{row.seller_name}</Td>
-                            <Td>{row.seller_email}</Td>
-                            <Td>{row.seller_phone1}</Td>
-                            <Td>{row.seller_phone2}</Td>
-                            <Td>{row.seller_address}</Td>
+                        <Box as="tr" key={index} onClick={() => handleRowClick(row.id)} _hover={{ boxShadow: "0 0 10px #719ECE", cursor: "pointer" }}>
+                            <Td>{row.id || "N/A"}</Td>
+                            <Td>{row.interest || "N/A"}</Td>
+                            <Td>{new Date(row.date).toLocaleDateString() || "N/A"}</Td>
+                            <Td>{row.buyer_name || "N/A"}</Td>
+                            <Td>{row.buyer_email || "N/A"}</Td>
+                            <Td>{row.buyer_phone1 || "N/A"}</Td>
+                            <Td>{row.buyer_phone2 || "N/A"}</Td>
+                            <Td>{row.buyer_address || "N/A"}</Td>
+                            <Td>{row.seller_name || "N/A"}</Td>
+                            <Td>{row.seller_email || "N/A"}</Td>
+                            <Td>{row.seller_phone1 || "N/A"}</Td>
+                            <Td>{row.seller_phone2 || "N/A"}</Td>
+                            <Td>{row.seller_address || "N/A"}</Td>
                         </Box>
                     ))}
                 </Tbody>

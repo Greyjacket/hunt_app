@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Box, FormControl, FormLabel, Input, Button, Grid, Select, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter} from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 
 function LeadTable() {
+    const navigate = useNavigate();
+
     const initialTableData = {
         seller: '',
         buyer: '',
@@ -73,16 +76,19 @@ function LeadTable() {
             }
             return response.json();
         })
+        .then(data => {
+            navigate(`/leads/${data.id}`);
+        })
         .catch((error) => {
             console.error('Error:', error);
         });
     };
 
     return (
-        <div>
-        <Box as="form" onSubmit={handleSubmit} p={20} border="1px" borderColor="gray.200" borderRadius="sm">
+    <div>
+    <Box as="form" onSubmit={handleSubmit} p={10} border="1px" borderColor="gray.200" borderRadius="sm">
         <Box mb={4}>{currentDate}</Box>
-        <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }} gap={3}>
+        <Grid templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }} gap={2}>
             {labels.map((labelPair, index) => (
                 labelPair.map((label, subIndex) => (
                     <FormControl id={label} key={label} mb={4}>
@@ -113,7 +119,7 @@ function LeadTable() {
                 </ModalFooter>
             </ModalContent>
         </Modal>
-        </div>
+    </div>
     );
 }
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Flex, Box, FormControl, FormLabel, Input, Button, Grid, GridItem, Select, Text } from "@chakra-ui/react";
 import { useParams } from 'react-router-dom';
-import Notes from './Notes';
 
 function LeadTableDisplay() {
     const { id } = useParams();
@@ -98,6 +97,7 @@ function LeadTableDisplay() {
             };
         });
     };
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         const url = '`${API_BASE_URL}leads/${id}';
@@ -139,7 +139,7 @@ function LeadTableDisplay() {
                         labelPair.map((label, subIndex) => (
                             <FormControl id={label} key={label} mb={4}>
                                 <FormLabel>{label}</FormLabel>
-                                <Text borderBottom="1px solid" borderColor="gray.200">{tableData[labels_map[index][subIndex]]}</Text>
+                                <Text borderBottom="1px solid" borderColor="gray.200">{tableData[labels_map[index][subIndex]] || "N/A"}</Text>
                             </FormControl>
                         ))
                     ))}
