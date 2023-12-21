@@ -12,7 +12,7 @@ function LeadsList() {
 
     async function syncTable() {
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
-        const response = await fetch(`${API_BASE_URL}leads`);
+        const response = await fetch(`http://34.130.254.170/api/leads`);
 
         if (!response.ok) {
             console.error(`Failed to fetch leads: ${response.status}`);

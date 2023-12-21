@@ -18,7 +18,7 @@ function Notes() {
 
     async function syncNotes() {
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
-        const response = await fetch(`${API_BASE_URL}leads/${id}/notes`);
+        const response = await fetch(`http://34.130.254.170/api/leads/${id}/notes`);
         if (!response.ok) {
             console.error(`Failed to fetch notes: ${response.status}`);
             return;
@@ -40,7 +40,7 @@ function Notes() {
         const note = {lead_id: id, content: content, addenda: [] };
 
         // Send a POST request
-        await fetch(`${API_BASE_URL}notes`, {
+        await fetch(`http://34.130.254.170/api/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ function Notes() {
             })
         }
         // Send a PUT request
-        await fetch(`${API_BASE_URL}notes/${editId}`, {
+        await fetch(`http://34.130.254.170/api/notes/${editId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ function Notes() {
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
 
         // Send a PUT request
-        await fetch(`${API_BASE_URL}notes/${editId}`, {
+        await fetch(`http://34.130.254.170/api/notes/${editId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

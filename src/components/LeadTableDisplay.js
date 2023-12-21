@@ -42,7 +42,7 @@ function LeadTableDisplay() {
 
     async function syncTable() {
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
-        const response = await fetch(`${API_BASE_URL}leads/${id}`);
+        const response = await fetch(`http://34.130.254.170/api/leads/${id}`);
 
         if (!response.ok) {
             console.error(`Failed to fetch notes: ${response.status}`);
@@ -102,7 +102,7 @@ function LeadTableDisplay() {
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
 
         event.preventDefault();
-        const url = `${API_BASE_URL}/leads/${id}`;
+        const url = `http://34.130.254.170/api/leads/${id}`;
             fetch(url, {
             method: 'PUT',
             headers: {
