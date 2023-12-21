@@ -41,7 +41,7 @@ function LeadTableDisplay() {
     ];  
 
     async function syncTable() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
         const response = await fetch(`${API_BASE_URL}leads/${id}`);
 
         if (!response.ok) {
@@ -99,9 +99,11 @@ function LeadTableDisplay() {
     };
     
     const handleSubmit = (event) => {
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
+
         event.preventDefault();
-        const url = '`${API_BASE_URL}leads/${id}';
-        fetch(url, {
+        const url = `${API_BASE_URL}/leads/${id}`;
+            fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

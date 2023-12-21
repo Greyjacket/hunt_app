@@ -17,7 +17,7 @@ function Notes() {
     const { id } = useParams();
 
     async function syncNotes() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
         const response = await fetch(`${API_BASE_URL}leads/${id}/notes`);
         if (!response.ok) {
             console.error(`Failed to fetch notes: ${response.status}`);
@@ -32,7 +32,7 @@ function Notes() {
     }, []); // Empty dependency array means this effect runs once on mount
 
     async function handleNoteCreate() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
         if (content.trim() === '') {
             alert('Note text cannot be empty!');
             return;
@@ -54,7 +54,7 @@ function Notes() {
     }
 
     async function handleNoteUpdate() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
         let note = notes.find(note => note.id === editId);
         let noteUpdate = {
             'content': tempNote.content,
@@ -77,7 +77,7 @@ function Notes() {
     }
 
     async function handleNoteDelete() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
 
         // Send a PUT request
         await fetch(`${API_BASE_URL}notes/${editId}`, {

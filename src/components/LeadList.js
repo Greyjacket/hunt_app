@@ -11,7 +11,7 @@ function LeadsList() {
     let columns = ["ID", "Interest", "Date", "Buyer Name", "Buyer Email", "Buyer Phone 1", "Buyer Phone 2", "Buyer Address", "Seller Name", "Seller Email", "Seller Phone 1", "Seller Phone 2", "Seller Address"]
 
     async function syncTable() {
-        const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+        const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
         const response = await fetch(`${API_BASE_URL}leads`);
 
         if (!response.ok) {
