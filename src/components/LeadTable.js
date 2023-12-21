@@ -56,7 +56,8 @@ function LeadTable() {
         event.preventDefault();
         const API_BASE_URL = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_API_BASE_URL : process.env.REACT_APP_DEV_API_URL;
 
-        const url = `${API_BASE_URL}leads/`;
+        //const url = `${API_BASE_URL}leads/`;
+        const url = 'http://34.130.254.170/api/leads/'
         fetch(url, {
             method: 'POST',
             headers: {
